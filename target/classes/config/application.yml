@@ -1,0 +1,16 @@
+debug: true
+
+spring:
+  profiles:
+    active: demo
+server:
+  port: 8080
+
+---
+spring:
+  profiles: demo
+server:
+  port: 8081
+
+pay-in-yml:
+  payId: pay${random.uuid}

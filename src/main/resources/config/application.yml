@@ -1,0 +1,27 @@
+# 查看生效的自动配置类
+debug: true
+
+spring:
+  profiles:
+    active: demo
+#  DB
+  datasource:
+    username: root
+    password: Nanaan7an
+#    链接数据库地址，3306为默认端口；时区报错一般加时区
+    url: jdbc:mysql://localhost:3306/dbname?useUnicode=true&characterEncoding=utf-8&serverTimeZone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+#    指定数据源，可配置相关的Druid特有配置；这些配置默认不注入，需要开发者手动绑定，见DruidConfig
+#    type: Druid
+server:
+  port: 8080
+
+#---
+#spring:
+#  profiles: demo
+#server:
+#  port: 8081
+#
+#pay-in-yml:
+#  payId: pay${random.uuid}
+
