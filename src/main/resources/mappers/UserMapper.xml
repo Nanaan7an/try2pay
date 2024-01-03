@@ -2,18 +2,51 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!--namespace表示映射的接口-->
 <mapper namespace="com.example.demo.mapper.UserMapper">
-    <resultMap id="User" type="User">
+    <!--resultMap可属性名和列命不一致时以提供结果映射，属性名通常为小驼峰，而列名通常为下划线-->
+    <!--id属性唯一标识一个结果映射；sql语句引用时，使用resultMap属性，其值为id的值；使用resultMap时，就不能使用resultType-->
+    <resultMap id="userMap" type="User">
+        <!--id、result标签将列名映射为属性名-->
+        <!--id 元素对应的属性会被标记为对象的标识符，在比较对象实例时使用。 这样可以提高整体的性能，尤其是进行缓存和嵌套结果映射（也就是连接映射）的时候-->
         <id property="userId" column="id"/>
+        <result property="userName" column="user_name"/>
         <result property="age" column="age"/>
         <result property="email" column="email"/>
-        <result property="name" column="name"/>
     </resultMap>
 
+    <!--id与接口中的方法名应一致-->
     <insert id="addUser" parameterType="com.example.demo.pojo.User">
-        insert into user_info(id, name, email, age)
-        values (#{userId}, #{name}, #{email}, #{age})
+        insert into user_info (id, user_name, age, email)
+        values (#{userId}, #{userName}, #{age}, #{email})
     </insert>
 
+    <!--使用resultType，返回时只能映射列名与属性名相同的字段-->
+    <select id="queryAllUser" resultMap="userMap">
+        select *
+        from user_info
+    </select>
+
+    <select id="queryUserById" parameterType="com.example.demo.pojo.User" resultMap="userMap">
+        select *
+        from user_info
+        where id = #{id}
+    </select>
+
+    <update id="changeUser" parameterType="com.example.demo.pojo.User">
+        update user_info
+        <set>
+            age=#{age}
+        </set>
+        <where>
+            id=#{userId}
+        </where>
+
+    </update>
+    
+    <delete id="delUser" parameterType="com.example.demo.pojo.User">
+        delete
+        from user_info
+        where id = #{userId}
+    </delete>
 </mapper>

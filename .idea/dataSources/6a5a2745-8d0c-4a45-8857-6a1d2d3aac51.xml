@@ -1017,8 +1017,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="try2pay">
-      <IntrospectionTimestamp>2023-12-30.01:43:13</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-29.09:43:13</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-01-04.00:03:01</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-01-03.08:03:01</LocalIntrospectionTimestamp>
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="mysql.infoschema">
@@ -1066,27 +1066,37 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="302" parent="298" name="name">
-      <Comment>用户姓名</Comment>
-      <DasType>char(20)|0s</DasType>
+    <column id="302" parent="298" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <Comment>用户id</Comment>
+      <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="303" parent="298" name="id">
-      <Comment>用户id</Comment>
-      <DasType>char(15)|0s</DasType>
+    <column id="303" parent="298" name="user_name">
+      <Comment>用户姓名</Comment>
+      <DasType>char(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="304" parent="298" name="email">
-      <Comment>电子邮件</Comment>
-      <DasType>varchar(100)|0s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="305" parent="298" name="age">
+    <column id="304" parent="298" name="age">
       <Comment>用户年龄</Comment>
       <DasType>tinyint|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="305" parent="298" name="email">
+      <DasType>varchar(100)|0s</DasType>
       <Position>4</Position>
     </column>
+    <index id="306" parent="298" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="307" parent="298" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

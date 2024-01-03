@@ -1,7 +1,6 @@
 package com.example.demo.pojo;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
@@ -18,9 +17,9 @@ import javax.validation.constraints.Email;
 @Validated
 public class User {
 
-//    id为自增，不需要传值
+    //    id为自增，不需要传值
 //    @Value("${userId}")
-    private String userId;
+    private Integer userId;
 
     /**
      * 用户年龄
@@ -30,7 +29,7 @@ public class User {
     /**
      * 用户姓名
      */
-    private String name;
+    private String userName;
 
     /**
      * 注解@Email，叫做JSR303校验
