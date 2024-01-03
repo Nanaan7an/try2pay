@@ -14,9 +14,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    public String addUser(User user) {
-        userService.addUser(user);
-        return "ok";
+    public int addUser(User user) {
+        return userService.addUser(user);
     }
 
     /**

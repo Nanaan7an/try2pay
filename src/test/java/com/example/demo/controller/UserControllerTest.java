@@ -21,7 +21,7 @@ class UserControllerTest {
         user.setAge(3);
         user.setUserId(1);
         user.setEmail("email");
-        userController.addUser(user);
+        System.out.println(userController.addUser(user));
     }
 
     @Test

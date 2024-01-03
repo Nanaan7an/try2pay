@@ -15,7 +15,7 @@ public interface UserMapper {
      *
      * @param user user记录
      */
-    void addUser(User user);
+    int addUser(User user);
 
     /**
      * 查询所有user
