@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.Email;
 
 /**
- * @PropertySource加载指定的配置文件，用于实体类和配置文件绑定。
+ * 注解@PropertySource加载指定的配置文件，用于实体类和配置文件绑定。
  * 由于命名非application.*，故该配置文件不会被自动装配
  */
 @Component
@@ -18,13 +18,22 @@ import javax.validation.constraints.Email;
 @Validated
 public class User {
 
-    @Value("${userId}")
+//    id为自增，不需要传值
+//    @Value("${userId}")
     private String userId;
 
+    /**
+     * 用户年龄
+     */
     private Integer age;
 
     /**
-     * @Email，叫做JSR303校验
+     * 用户姓名
+     */
+    private String name;
+
+    /**
+     * 注解@Email，叫做JSR303校验
      */
     @Email(message = "这里是一个自定义的提示")
     private String email;

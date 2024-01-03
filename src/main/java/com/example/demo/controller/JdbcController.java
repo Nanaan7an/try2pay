@@ -27,10 +27,10 @@ public class JdbcController {
 
     @GetMapping("/update/{id}")
     public void update(@PathVariable String id) {
-        String s = "update table set key1=? ,key2=? where id=" + id;
-        Object[] objects = new Object;
-        objects[0] = "0";
-        objects[1] = "1";
-        jdbcTemplate.update(s, objects);
+//        String s = "update table set key1=? ,key2=? where id=" + id;
+//        Object[] objects = new Object;
+//        objects[0] = "0";
+//        objects[1] = "1";
+//        jdbcTemplate.update(s, objects);
     }
 }
