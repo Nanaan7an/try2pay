@@ -35,6 +35,11 @@ public class UserController {
         return userService.queryUserById(id);
     }
 
+
+    public User queryUserByInfo(User user) {
+        return userService.queryUserByInfo(user);
+    }
+
     /**
      * 修改user
      *

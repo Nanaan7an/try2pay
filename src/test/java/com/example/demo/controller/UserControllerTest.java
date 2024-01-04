@@ -17,10 +17,9 @@ class UserControllerTest {
     @Test
     void addUser() {
         User user = new User();
-        user.setUserName("张三");
-        user.setAge(3);
-        user.setUserId(1);
-        user.setEmail("email");
+        user.setUserName("李四");
+        user.setAge(4);
+        user.setEmail("lisi@email");
         System.out.println(userController.addUser(user));
     }
 
@@ -33,6 +32,14 @@ class UserControllerTest {
     void queryUserById() {
         int id = 1;
         System.out.println(userController.queryUserById(id));
+    }
+
+    @Test
+    void queryUserByInfo() {
+        User user = new User();
+//        user.setUserId(3);
+        user.setUserName("王五");
+        System.out.println(userController.queryUserByInfo(user));
     }
 
     @Test

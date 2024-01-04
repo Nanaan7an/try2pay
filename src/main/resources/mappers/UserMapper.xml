@@ -33,6 +33,15 @@
         where id = #{id}
     </select>
 
+    <select id="queryUserByInfo" parameterType="com.example.demo.pojo.User" resultMap="userMap">
+        select *
+        from user_info
+        where id = #{userId}
+          and user_name = #{userName}
+          and age = #{age}
+          and email = #{email}
+    </select>
+
     <update id="changeUser" parameterType="com.example.demo.pojo.User">
         update user_info
         <set>
@@ -43,7 +52,7 @@
         </where>
 
     </update>
-    
+
     <delete id="delUser" parameterType="com.example.demo.pojo.User">
         delete
         from user_info

@@ -31,6 +31,13 @@ public interface UserMapper {
     User queryUserById(int id);
 
     /**
+     * 根据条件查找User
+     * @param user 查询条件
+     * @return 查询结果
+     */
+    User queryUserByInfo(User user);
+
+    /**
      * 修改user
      *
      * @param user 修改的user记录
