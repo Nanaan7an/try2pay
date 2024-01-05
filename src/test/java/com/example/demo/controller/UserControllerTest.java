@@ -21,6 +21,7 @@ class UserControllerTest {
         user.setAge(4);
         user.setEmail("lisi@email");
         System.out.println(userController.addUser(user));
+        log.info("add success");
     }
 
     @Test
