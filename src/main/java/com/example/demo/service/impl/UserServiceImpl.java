@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.common.log.LogAnnotation;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
@@ -24,8 +25,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.addUser(user);
     }
 
+    @LogAnnotation(title = "queryAllUser")
     @Override
     public List<User> queryAllUser() {
+        log.info("查询方法执行前");
         return userMapper.queryAllUser();
     }
 
