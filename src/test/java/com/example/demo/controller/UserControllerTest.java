@@ -17,9 +17,9 @@ class UserControllerTest {
     @Test
     void addUser() {
         User user = new User();
-        user.setUserName("李四");
+        user.setUserName("赵六");
         user.setAge(4);
-        user.setEmail("lisi@email");
+        user.setEmail("wangwu@email");
         System.out.println(userController.addUser(user));
         log.info("add success");
     }

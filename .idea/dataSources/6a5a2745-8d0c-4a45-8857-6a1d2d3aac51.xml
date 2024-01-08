@@ -1017,8 +1017,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="try2pay">
-      <IntrospectionTimestamp>2024-01-04.00:03:01</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-01-03.08:03:01</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-01-08.23:44:12</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-01-08.07:44:12</LocalIntrospectionTimestamp>
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="mysql.infoschema">
@@ -1067,7 +1067,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>3</Position>
     </column>
     <column id="302" parent="298" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>4</AutoIncrement>
       <Comment>用户id</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1088,12 +1088,16 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(100)|0s</DasType>
       <Position>4</Position>
     </column>
-    <index id="306" parent="298" name="PRIMARY">
+    <column id="306" parent="298" name="uuid">
+      <DasType>char(36)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <index id="307" parent="298" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="307" parent="298" name="PRIMARY">
+    <key id="308" parent="298" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

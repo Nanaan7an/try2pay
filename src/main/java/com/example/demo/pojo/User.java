@@ -36,4 +36,9 @@ public class User {
      */
     @Email(message = "这里是一个自定义的提示")
     private String email;
+
+    /**
+     * uuid
+     */
+    private String uuid;
 }

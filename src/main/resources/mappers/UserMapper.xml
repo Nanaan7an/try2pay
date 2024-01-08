@@ -13,12 +13,13 @@
         <result property="userName" column="user_name"/>
         <result property="age" column="age"/>
         <result property="email" column="email"/>
+        <result property="uuid" column="uuid"/>
     </resultMap>
 
     <!--id与接口中的方法名应一致-->
     <insert id="addUser" parameterType="com.example.demo.pojo.User">
-        insert into user_info (id, user_name, age, email)
-        values (#{userId}, #{userName}, #{age}, #{email})
+        insert into user_info (id, user_name, age, email, uuid)
+        values (#{userId}, #{userName}, #{age}, #{email}, #{uuid})
     </insert>
 
     <!--使用resultType，返回时只能映射列名与属性名相同的字段-->
