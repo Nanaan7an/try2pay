@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.common.constant.GlobalConstant;
 import com.example.demo.common.log.LogAnnotation;
 import com.example.demo.service.DemoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,15 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/demo")
+@Slf4j
 public class DemoController {
     @Autowired
     DemoService service;
+
+    @Autowired
+    GlobalConstant globalConstant;
 
 
     @LogAnnotation(title = "try")
     @RequestMapping(value = "/try", method = RequestMethod.GET)
     public String demoTry() {
-        service.demoMethod();
+        log.info("globalConstant.getAuthorName()={}", globalConstant.getAuthorName());
         return "ok";
     }
 }

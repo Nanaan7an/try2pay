@@ -1,7 +1,6 @@
 package com.example.demo.pojo;
 
 import lombok.Data;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
@@ -12,13 +11,11 @@ import javax.validation.constraints.Email;
  * 由于命名非application.*，故该配置文件不会被自动装配
  */
 @Component
-@PropertySource(value = "classpath:config/demo.properties")
 @Data
 @Validated
 public class User {
 
     //    id为自增，不需要传值
-//    @Value("${userId}")
     private Integer userId;
 
     /**
