@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.addUser(user);
     }
 
-    @LogAnnotation(title = "queryAllUser")
     @Override
     public List<User> queryAllUser() {
         log.info("查询方法执行前");

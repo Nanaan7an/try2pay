@@ -13,19 +13,20 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class DemoApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(DemoApplication.class, args);
-
-        /**
-         * 注解@Configuration的类ConfigurationConfig
-         * 调用Bean对象定义的方法可以得到相应的Bean对象，多次调用返回同一个Bean对象
-         */
-        ConfigurationConfig configurationConfig =
-                (ConfigurationConfig) context.getBean("configurationConfig");
-
-        User user1 = configurationConfig.sameInstance();
-        User user2 = configurationConfig.sameInstance();
-
-        log.info("创建实例的结果是：{}", user1 == user2 ? "true" : "false");
+        SpringApplication.run(DemoApplication.class, args);
+//        ConfigurableApplicationContext context = SpringApplication.run(DemoApplication.class, args);
+//
+//        /**
+//         * 注解@Configuration的类ConfigurationConfig
+//         * 调用Bean对象定义的方法可以得到相应的Bean对象，多次调用返回同一个Bean对象
+//         */
+//        ConfigurationConfig configurationConfig =
+//                (ConfigurationConfig) context.getBean("configurationConfig");
+//
+//        User user1 = configurationConfig.sameInstance();
+//        User user2 = configurationConfig.sameInstance();
+//
+//        log.info("创建实例的结果是：{}", user1 == user2 ? "true" : "false");
     }
 
 }

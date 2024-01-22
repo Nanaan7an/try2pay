@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.common.log.LogAnnotation;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
 
+    @LogAnnotation(title = "addUser")
     public int addUser(User user) {
         return userService.addUser(user);
     }
@@ -22,6 +24,7 @@ public class UserController {
     /**
      * 查询所有user
      */
+    @LogAnnotation(title = "addUser")
     @PostMapping("/queryAllUser")
     public List<User> queryAllUser() {
         return userService.queryAllUser();
