@@ -9,9 +9,17 @@ import java.time.format.DateTimeFormatter;
  */
 public class DateUtil {
 
-    private final String FORMATTER = "yyyy-MM-dd";
-    private final String FORMATTER2 = "yyyy-MM-dd hh:mm:ss";
-    private final String FORMATTER3 = "hh:mm:ss";
+    /**
+     * 工具类的构造器方法私有化。
+     * 访问静态方法时时通过
+     */
+    private DateUtil() {
+    }
+
+    private static final String DATE1 = "yyyy-MM-dd";
+    private static final String DATE2 = "yyyy/MM/dd";
+    private static final String DATETIME1 = "yyyy-MM-dd hh:mm:ss";
+    private static final String TIME1 = "hh:mm:ss";
 
 
     /**
@@ -19,9 +27,20 @@ public class DateUtil {
      *
      * @return 当前日期格式化
      */
-    public String getDate() {
+    public static String getDate() {
         LocalDate localDate = LocalDate.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(FORMATTER);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE1);
+        return localDate.format(dateTimeFormatter);
+    }
+
+    /**
+     * 获取当前日期时间
+     *
+     * @return 格式化的日期时间
+     */
+    public static String getDateTime() {
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATETIME1);
         return localDate.format(dateTimeFormatter);
     }
 
@@ -30,9 +49,9 @@ public class DateUtil {
      *
      * @return 当前时间格式化
      */
-    public String getTime() {
+    public static String getTime() {
         LocalTime localTime = LocalTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(FORMATTER3);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME1);
         return localTime.format(dateTimeFormatter);
     }
 
@@ -41,7 +60,45 @@ public class DateUtil {
      *
      * @return 毫秒数
      */
-    public Long getMillisecond() {
+    public static Long getMillisecond() {
         return System.currentTimeMillis();
     }
+
+    /**
+     * 获取昨天的日期
+     *
+     * @return 日期格式化
+     */
+    public static String getPastDay() {
+        LocalDate localDate = LocalDate.now().plusDays(-1);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME1);
+        return localDate.format(dateTimeFormatter);
+    }
+
+    /**
+     * 获取过去的日期。
+     * 0-当前日期；1-昨天
+     *
+     * @param l 以当前为基准的过去的天数
+     * @return 日期格式化
+     */
+    public static String getPastDay(long l) {
+        LocalDate localDate = LocalDate.now().plusDays(-l);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME1);
+        return localDate.format(dateTimeFormatter);
+    }
+
+    /**
+     * 获取过去的日期，并指定格式化
+     *
+     * @param l      以当前为基准的过去的天数
+     * @param format 指定格式
+     * @return 指定的日期格式化
+     */
+    public static String getPastDay(long l, String format) {
+        LocalDate localDate = LocalDate.now().plusDays(-l);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME1);
+        return localDate.format(dateTimeFormatter);
+    }
+
 }

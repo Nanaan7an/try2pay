@@ -1,9 +1,9 @@
 package com.example.demo.service.bill;
 
 /**
- * 对账
+ * 对账，依次调用本接口的实现类
  */
-public interface BillStepService {
+public interface BillExeService {
     /**
      * -1.查询所有商户号
      * -2.遍历商户号，查询批次信息

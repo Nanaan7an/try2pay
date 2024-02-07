@@ -1,6 +1,7 @@
 package com.example.demo.service.bill;
 
 import com.example.demo.enums.BatchStatus;
+import com.example.demo.enums.BatchStep;
 import com.example.demo.mapper.BatchMapper;
 import com.example.demo.mapper.MerMapper;
 import com.example.demo.pojo.BatchInfo;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.example.demo.common.util.DateUtil.getDate;
 
 /**
  * 对账中用到的一些辅助方法
@@ -54,10 +57,30 @@ public class BillService {
      * @return
      */
     public BatchInfo getBatch(String merId) {
-        BatchInfo batchInfo=new BatchInfo();
+        BatchInfo batchInfo = new BatchInfo();
         batchInfo.setMerId(merId);
-        batchInfo.setBatchDate("昨天把");
-        return batchMapper.queryBatchByMer(merId);
+        batchInfo.setBatchDate(getDate());
+        BatchInfo queryBatch = queryBatch(batchInfo);
+        if (queryBatch == null) {
+            batchInfo.setBatchStep(BatchStep.DOWN.getStep());
+            addBatch(batchInfo);
+            return batchInfo;
+        }
+        return queryBatch;
+    }
+
+    /**
+     * 查询批次信息
+     *
+     * @param batchInfo
+     * @return
+     */
+    public BatchInfo queryBatch(BatchInfo batchInfo) {
+        return batchMapper.queryBatch(batchInfo);
+    }
+
+    public void addBatch(BatchInfo batchInfo){
+        batchMapper.addBatch(batchInfo);
     }
 
 }

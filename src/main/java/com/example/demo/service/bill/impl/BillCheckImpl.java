@@ -3,7 +3,7 @@ package com.example.demo.service.bill.impl;
 import com.example.demo.enums.BatchStep;
 import com.example.demo.pojo.BatchInfo;
 import com.example.demo.service.bill.BillService;
-import com.example.demo.service.bill.BillStepService;
+import com.example.demo.service.bill.BillExeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Order(3)
 @Service
-public class BillCheckImpl extends BillService implements BillStepService {
+public class BillCheckImpl extends BillService implements BillExeService {
     @Override
     public void execute() {
         log.info("step3：START！！执行对账");
