@@ -1,5 +1,6 @@
 package com.example.demo.service.bill.impl;
 
+import com.example.demo.enums.BatchStatusEnum;
 import com.example.demo.pojo.BatchInfo;
 import com.example.demo.service.bill.billservice.BillService;
 import com.example.demo.service.bill.BillExeService;
@@ -22,7 +23,7 @@ public class BillCreateImpl extends BillService implements BillExeService {
         log.info("step4：START！！生成账单");
         for (String merItem : getMers()) {
             BatchInfo batchInfo = getBatch(merItem);
-            if (isContinue(batchInfo, BatchStep.CREATE.getStep())) {
+            if (isContinue(batchInfo, BatchStatusEnum.CREATE.getSts())) {
                 createBillFileService.createloadFile(batchInfo);
             }
         }

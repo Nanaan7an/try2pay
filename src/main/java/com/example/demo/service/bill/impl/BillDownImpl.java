@@ -1,5 +1,6 @@
 package com.example.demo.service.bill.impl;
 
+import com.example.demo.enums.BatchStatusEnum;
 import com.example.demo.pojo.BatchInfo;
 import com.example.demo.service.bill.billservice.BillService;
 import com.example.demo.service.bill.BillExeService;
@@ -25,7 +26,7 @@ public class BillDownImpl extends BillService implements BillExeService {
         log.info("step1：START！！下载账单");
         for (String merItem : getMers()) {
             BatchInfo batchInfo = getBatch(merItem);
-            if (isContinue(batchInfo, BatchStep.DOWN.getStep())) {
+            if (isContinue(batchInfo, BatchStatusEnum.DOWN.getSts())) {
                 downBillFileService.downloadFile(batchInfo);
             }
         }

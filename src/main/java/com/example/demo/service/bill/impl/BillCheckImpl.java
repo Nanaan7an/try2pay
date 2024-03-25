@@ -1,5 +1,6 @@
 package com.example.demo.service.bill.impl;
 
+import com.example.demo.enums.BatchStatusEnum;
 import com.example.demo.pojo.BatchInfo;
 import com.example.demo.service.bill.billservice.BillService;
 import com.example.demo.service.bill.BillExeService;
@@ -16,7 +17,7 @@ public class BillCheckImpl extends BillService implements BillExeService {
         log.info("step3：START！！执行对账");
         for (String merItem : getMers()) {
             BatchInfo batchInfo = getBatch(merItem);
-            if (isContinue(batchInfo, BatchStep.CHECK.getStep())){
+            if (isContinue(batchInfo, BatchStatusEnum.CHECK.getSts())){
 
             }
         }
