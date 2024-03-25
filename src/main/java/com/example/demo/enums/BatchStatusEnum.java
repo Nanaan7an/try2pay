@@ -2,11 +2,12 @@ package com.example.demo.enums;
 
 /**
  * 执行状态
+ * 1-4：对账步骤
+ * 5-6：对账执行状态
  */
-public enum BatchStatus {
+public enum BatchStatusEnum {
 
     DOWN("下载账单","1"),
-
     PARSE("解析账单","2"),
     CHECK("流水核对", "3"),
     CREATE("生成账单", "4"),
@@ -22,7 +23,7 @@ public enum BatchStatus {
 
     private String sts;
 
-    private BatchStatus(String desc, String sts) {
+    private BatchStatusEnum(String desc, String sts) {
         this.desc = desc;
         this.sts = sts;
     }

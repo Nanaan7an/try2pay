@@ -1,18 +1,16 @@
-package com.example.demo.service.bill;
+package com.example.demo.service.bill.billservice;
 
-import com.example.demo.enums.BatchStatus;
-import com.example.demo.enums.BatchStep;
+import com.example.demo.enums.BatchStatusEnum;
 import com.example.demo.mapper.BatchMapper;
 import com.example.demo.mapper.MerMapper;
 import com.example.demo.pojo.BatchInfo;
-import com.example.demo.pojo.MerInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import static com.example.demo.common.util.DateUtil.getDate;
 
 /**
  * 对账中用到的一些辅助方法
@@ -35,7 +33,7 @@ public class BillService {
      * @return true-继续执行
      */
     public Boolean isContinue(BatchInfo batchInfo, String step) {
-        if (step.equals(batchInfo.getBatchStep()) && !BatchStatus.FAIL.equals(batchInfo.getBatchSts())) {
+        if (step.equals(batchInfo.getBatchStep()) && !BatchStatusEnum.FAIL.getSts().equals(batchInfo.getBatchSts())) {
             return true;
         }
         return false;
@@ -59,10 +57,11 @@ public class BillService {
     public BatchInfo getBatch(String merId) {
         BatchInfo batchInfo = new BatchInfo();
         batchInfo.setMerId(merId);
-        batchInfo.setBatchDate(getDate());
+        //对账日期，当前日期的前一个自然日
+        batchInfo.setBatchDate(LocalDate.now().plusDays(-1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         BatchInfo queryBatch = queryBatch(batchInfo);
         if (queryBatch == null) {
-            batchInfo.setBatchStep(BatchStep.DOWN.getStep());
+            batchInfo.setBatchStep(BatchStatusEnum.DOWN.getSts());
             addBatch(batchInfo);
             return batchInfo;
         }
@@ -79,7 +78,12 @@ public class BillService {
         return batchMapper.queryBatch(batchInfo);
     }
 
-    public void addBatch(BatchInfo batchInfo){
+    /**
+     * 新增批次信息
+     *
+     * @param batchInfo
+     */
+    public void addBatch(BatchInfo batchInfo) {
         batchMapper.addBatch(batchInfo);
     }
 
