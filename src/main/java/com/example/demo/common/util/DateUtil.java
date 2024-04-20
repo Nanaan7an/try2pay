@@ -1,6 +1,7 @@
 package com.example.demo.common.util;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,6 +20,7 @@ public class DateUtil {
     private static final String DATE1 = "yyyy-MM-dd";
     private static final String DATE2 = "yyyy/MM/dd";
     private static final String DATETIME1 = "yyyy-MM-dd hh:mm:ss";
+    private static final String DATETIME2 = "yyyy-MM-dd hh:mm:ss.SSS";
     private static final String TIME1 = "hh:mm:ss";
 
 
@@ -39,8 +41,19 @@ public class DateUtil {
      * @return 格式化的日期时间
      */
     public static String getDateTime() {
-        LocalDate localDate = LocalDate.now();
+        LocalDateTime localDate = LocalDateTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATETIME1);
+        return localDate.format(dateTimeFormatter);
+    }
+
+    /**
+     * 获取当前日期时间毫秒
+     *
+     * @return 格式化的日期时间毫秒
+     */
+    public static String getDateTime2() {
+        LocalDateTime localDate = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATETIME2);
         return localDate.format(dateTimeFormatter);
     }
 
