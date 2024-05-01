@@ -21,6 +21,7 @@ public class DateUtil {
     private static final String DATE2 = "yyyy/MM/dd";
     private static final String DATETIME1 = "yyyy-MM-dd hh:mm:ss";
     private static final String DATETIME2 = "yyyy-MM-dd hh:mm:ss.SSS";
+    public static final String DATETIME3 = "yyyyMMddhhmmssSSS";
     private static final String TIME1 = "hh:mm:ss";
 
 
@@ -35,6 +36,18 @@ public class DateUtil {
         return localDate.format(dateTimeFormatter);
     }
 
+
+    /**
+     * 获取指定格式的日期时间
+     *
+     * @param formatter 指定的日期时间格式的字符串
+     * @return 格式化的当前日期时间
+     */
+    public static String getDateTimeOf(String formatter) {
+        LocalDateTime localDate = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(formatter);
+        return localDate.format(dateTimeFormatter);
+    }
     /**
      * 获取当前日期时间
      *
