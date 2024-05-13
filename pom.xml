@@ -111,6 +111,13 @@
             <artifactId>spring-statemachine-core</artifactId>
             <version>2.2.0.RELEASE</version>
         </dependency>
+        <!--参数校验；在starter-web已经间接引用，此处显式引入依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
