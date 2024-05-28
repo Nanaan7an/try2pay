@@ -2,22 +2,28 @@ package com.example.demo.controller;
 
 import com.example.demo.common.log.LogAnnotation;
 import com.example.demo.pojo.User;
+import com.example.demo.pojo.check.param.CheckParam;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
 
+    @Resource
+    CheckParam checkParam;
+
     @LogAnnotation(title = "addUser")
+    @RequestMapping("/addUser")
     public int addUser(User user) {
+        checkParam.checkAddUser(user);
         return userService.addUser(user);
     }
 
@@ -52,6 +58,7 @@ public class UserController {
      * @return 操作影响的行数
      */
     public int changeUser(User user) {
+        checkParam.checkChangeUser(user);
         return userService.changeUser(user);
     }
 
