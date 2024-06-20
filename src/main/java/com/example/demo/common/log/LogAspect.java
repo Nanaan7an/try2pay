@@ -45,7 +45,7 @@ public class LogAspect {
         Method method = signature.getMethod();
         //获取注解值
         LogAnnotation annotation = method.getAnnotation(LogAnnotation.class);
-        String title = annotation.title();
+        String title = annotation.value();
         log.info("注解值是{}", title);
 
         return jsonResult;
