@@ -1,6 +1,6 @@
 package com.example.demo.frame.generic.entity;
 
-import com.example.demo.frame.generic.GoodsChange;
+import com.example.demo.frame.generic.method.GoodsChange;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,9 +14,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Drink extends Goods implements GoodsChange {
     /**
+     * 饮品名称
+     */
+    private String name;
+
+    /**
      * 净含量
      */
-    private String net;
+    private int net = 100;
+
+    /**
+     * 无参构造方法
+     */
+    public Drink() {
+    }
+
+    /**
+     * 有参构造方法
+     */
+    public Drink(String name) {
+        this.name = name;
+    }
+
+    public Drink(String name, int net) {
+        this.name = name;
+        this.net = net;
+    }
+
 
     public void shake(){
         log.info("摇");

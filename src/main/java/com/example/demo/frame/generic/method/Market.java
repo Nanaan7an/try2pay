@@ -1,8 +1,11 @@
-package com.example.demo.frame.generic;
+package com.example.demo.frame.generic.method;
 
 import com.example.demo.frame.generic.entity.Goods;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Author Nanaan
@@ -18,50 +21,60 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 public class Market<T extends Goods> {
+    //是否获得许可，默认是没有
+    boolean isAllow = false;
+
 
     public Market() {
         log.info("创建了一个新店铺！");
+        this.goods = new HashSet<>();
     }
 
     /**
-     * 制作商品
-     *
-     * @return 制作好的商品
+     * 货柜，物品good无序摆放
      */
-    public void makeGoods(T t, String date, String area) {
-        t.setDate(date);
-        t.setArea(area);
-        log.info("制作了一个[{}]，生产日期：[{}]，产地：[{}]", t.getClass().getName(), t.getDate(), t.getArea());
+    private Set<T> goods;
+
+    /**
+     * 制作商品
+     * setter
+     */
+    public void makeGoods(T good) {
+        log.info("上架{}", good);
+        this.goods.add(good);
     }
 
     /**
      * 出售商品
-     *
-     * @param t
+     * setter
      */
-    public void saleGoods(T t) {
-        log.info("出售了一个[{}]", t.getClass());
+    public void saleGoods(T good) {
+        log.info("售出{}", good);
+//        if (!this.isAllow){
+//            log.info("没有许可，禁止出售！");
+//        }else
+        this.goods.remove(good);
     }
 
     /**
-     * 商品被退货
-     *
-     * @return 商品
+     * 返回库存
+     * getter
+     * @return
      */
-    public void returnGoods(T t) {
-        log.info("退钱！");
+    public Set<T> haveGoods() {
+        return this.goods;
     }
 
     /**
-     * 换货。
+     * 打包。
      * 这是一个泛型方法，其类型参数P不能在其他地方使用，如不能识别为一个参数，不能在其他方法中使用等。
      *
      * @param p   原来的物品
      * @param <P>
-     * @return 新物品
+     * @return 打包后的物品
      */
-    public <P> P exchangeGood(P p) {
-        log.info("换了另一个商品{}", p.getClass());
+    public <P> P packageGood(P p) {
+        log.info("打包{}", p);
         return p;
     }
 }

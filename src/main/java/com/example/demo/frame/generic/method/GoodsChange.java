@@ -1,4 +1,4 @@
-package com.example.demo.frame.generic;
+package com.example.demo.frame.generic.method;
 
 public interface GoodsChange {
     /**
