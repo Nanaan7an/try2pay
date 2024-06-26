@@ -1,2 +1,6 @@
 /.idea/
 /src/test/
+# java 编译后的文件
+/target/
+# 文件本身
+.gitignore
