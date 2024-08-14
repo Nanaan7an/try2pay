@@ -9,7 +9,7 @@ public interface UserService {
     /**
      * 新增用户
      */
-    int addUser(User user);
+    User addUser(User user);
 
 
     /**

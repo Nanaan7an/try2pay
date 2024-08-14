@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.common.log.LogAnnotation;
+import com.example.demo.enums.ResultCode;
+import com.example.demo.exception.BussException;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
@@ -18,11 +19,14 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public int addUser(User user) {
+    public User addUser(User user) {
         UUID uuid=UUID.randomUUID();
         user.setUuid(uuid.toString());
-       log.info("生成的uuid为{}",uuid);
-        return userMapper.addUser(user);
+        log.info("生成的uuid为{}", uuid);
+        if (userMapper.addUser(user) < 1) {
+            throw new BussException(ResultCode.EXISTED, "该用户已存在，请勿重复创建");
+        }
+        return user;
     }
 
     @Override

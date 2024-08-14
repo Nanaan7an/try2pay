@@ -1,9 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.common.log.LogAnnotation;
+import com.example.demo.enums.ResultCode;
 import com.example.demo.pojo.User;
 import com.example.demo.pojo.check.param.CheckParam;
+import com.example.demo.pojo.response.Response;
+import com.example.demo.pojo.response.ResponseUtil;
 import com.example.demo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
+@Slf4j
 @RestController
 public class UserController {
     @Autowired
@@ -20,17 +25,26 @@ public class UserController {
     @Resource
     CheckParam checkParam;
 
-    @LogAnnotation(title = "addUser")
+    @LogAnnotation(value = "addUser")
     @RequestMapping("/addUser")
-    public int addUser(User user) {
+    public Response<User> addUser(User user) {
+        Response response = new Response<User>();
         checkParam.checkAddUser(user);
-        return userService.addUser(user);
+        try {
+            user = userService.addUser(user);
+            response = ResponseUtil.success(user);
+        } catch (Exception e) {
+            log.error("新增用户异常", e);
+            response = ResponseUtil.error(ResultCode.UNKONW);
+        } finally {
+            return response;
+        }
     }
 
     /**
      * 查询所有user
      */
-    @LogAnnotation(title = "addUser")
+    @LogAnnotation(value = "addUser")
     @PostMapping("/queryAllUser")
     public List<User> queryAllUser() {
         return userService.queryAllUser();
