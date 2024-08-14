@@ -12,7 +12,7 @@ public class BillController {
     @Autowired
     BatchService batchService;
 
-    @LogAnnotation(title = "对账")
+    @LogAnnotation(value = "对账")
     @PostMapping("/bill")
     public void bill() {
         batchService.bill();

@@ -26,7 +26,7 @@ public class DemoController {
     GlobalConstant globalConstant;
 
 
-    @LogAnnotation(title = "try")
+    @LogAnnotation(value = "try")
     @RequestMapping(value = "/try", method = RequestMethod.GET)
     public String demoTry() {
         log.info("globalConstant.getAuthorName()={}", globalConstant.getAuthorName());

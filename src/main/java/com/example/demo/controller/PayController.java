@@ -19,31 +19,31 @@ public class PayController {
     @Autowired
     PayService payService;
 
-    @LogAnnotation(title = "submit")
+    @LogAnnotation(value = "submit")
     @PostMapping("/submit")
     public void submit(Order order) {
         payService.submit(order);
     }
 
-    @LogAnnotation(title = "close")
+    @LogAnnotation(value = "close")
     @PostMapping("/close")
     public Pay close(Pay pay) {
         return payService.close(pay);
     }
 
-    @LogAnnotation(title = "pay")
+    @LogAnnotation(value = "pay")
     @PostMapping("/pay")
     public Pay pay(Pay pay) {
         return payService.pay(pay);
     }
 
-    @LogAnnotation(title = "refund")
+    @LogAnnotation(value = "refund")
     @PostMapping("/refund")
     public Pay refund(Pay pay) {
         return payService.refund(pay);
     }
 
-    @LogAnnotation(title = "query")
+    @LogAnnotation(value = "query")
     @PostMapping("/query")
     public Pay query(Pay pay) {
         return payService.query(pay);
