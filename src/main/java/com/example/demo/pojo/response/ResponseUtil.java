@@ -45,6 +45,19 @@ public class ResponseUtil {
     /**
      * 失败
      *
+     * @param code 错误码
+     * @param msg 错误信息
+     * @param decs 错误描述
+     * @param <T>
+     * @return
+     */
+    public static <T> Response error(String code, String msg, String decs) {
+        return new Response<>(code, msg);
+    }
+
+    /**
+     * 失败
+     *
      * @param errorMsg 显式的传入错误信息
      * @return
      */

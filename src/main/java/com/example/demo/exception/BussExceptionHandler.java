@@ -1,9 +1,9 @@
 package com.example.demo.exception;
 
-import com.example.demo.enums.ResultCode;
 import com.example.demo.pojo.response.Response;
 import com.example.demo.pojo.response.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 @Slf4j
-public class ExceptionHandler {
+public class BussExceptionHandler {
 
+    @ExceptionHandler(BussException.class)
     public Response bussExceptionHandler(BussException e) {
         log.error("BussException", e);
-        return ResponseUtil.error(ResultCode.UNKONW);
+        return ResponseUtil.error(e.getCode(), e.getMsg(), e.getDesc());
     }
 }
