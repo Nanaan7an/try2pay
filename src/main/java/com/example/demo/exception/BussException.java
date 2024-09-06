@@ -33,10 +33,10 @@ public class BussException extends RuntimeException {
         this.code = resultCode.getCode();
     }
 
-    public BussException(ResultCode resultCode, String desc) {
+    public BussException(ResultCode resultCode, String msg) {
         super(resultCode.getMsg());
         this.code = resultCode.getCode();
-        this.desc = desc;
+        this.msg = msg;
     }
 
 }
