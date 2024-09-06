@@ -28,7 +28,7 @@ public class ResponseUtil {
         /**
          * 定义各种构造函数的方便之处在此体现，可以避免像上面一样写很多代码，实现的功能是一样的
          */
-        return new Response<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getDesc(), data);
+        return new Response<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMsg(), data);
     }
 
     /**
@@ -39,7 +39,7 @@ public class ResponseUtil {
      * @return
      */
     public static <T> Response error(ResultCode result) {
-        return new Response<>(result.getCode(), result.getDesc());
+        return new Response<>(result.getCode(), result.getMsg());
     }
 
     /**
