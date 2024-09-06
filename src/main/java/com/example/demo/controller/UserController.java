@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.common.log.LogAnnotation;
 import com.example.demo.enums.ResultCode;
+import com.example.demo.exception.BussException;
 import com.example.demo.pojo.User;
 import com.example.demo.pojo.check.param.CheckParam;
 import com.example.demo.pojo.response.Response;
@@ -10,6 +11,7 @@ import com.example.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,11 +55,26 @@ public class UserController {
     /**
      * 根据id查找user
      *
-     * @param id 记录的id
+     * @param user id
      * @return 返回修改后的结果
      */
-    public User queryUserById(int id) {
-        return userService.queryUserById(id);
+    @LogAnnotation(value = "queryUserById")
+    @PostMapping("/queryUserById")
+    public Response<User> queryUserById(@RequestBody User user) {
+        Response response = new Response<User>();
+        try {
+            checkParam.checkQueryUserById(user);
+            User respUser = userService.queryUserById(user.getUserId());
+            response = ResponseUtil.success(respUser);
+        } catch (BussException e) {
+            log.error("根据ID查询异常", e);
+            response = ResponseUtil.error(e.getCode(), e.getMsg(), "");
+        } catch (Exception e) {
+            log.error("根据ID查询错误", e);
+            response = ResponseUtil.error(ResultCode.UNKONW);
+        } finally {
+            return response;
+        }
     }
 
 

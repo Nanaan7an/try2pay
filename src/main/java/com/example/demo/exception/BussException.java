@@ -29,8 +29,9 @@ public class BussException extends RuntimeException {
     }
 
     public BussException(ResultCode resultCode) {
-        super(resultCode.getMsg());
+//        super(resultCode.getMsg());
         this.code = resultCode.getCode();
+        this.msg= resultCode.getMsg();
     }
 
     public BussException(ResultCode resultCode, String msg) {
