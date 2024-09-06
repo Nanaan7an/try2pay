@@ -41,10 +41,9 @@ public class ParamValid {
     public void check(JoinPoint joinPoint, Validated validated) throws BussException {
         //获取参数，注解中获取分组校验
         Object[] args = joinPoint.getArgs();
-        Arrays.stream(args).forEach(
-                arg -> {
-                    Set<ConstraintViolation<Object>> validatorSet = validator.validate(args, validated.value());
-                    List<String> msgList = validatorSet.stream().map(objectConstraintViolation -> objectConstraintViolation.getPropertyPath() + objectConstraintViolation.getMessage()).collect(Collectors.toList());
+        Arrays.stream(args).forEach(arg -> {
+            Set<ConstraintViolation<Object>> validatorSet = validator.validate(arg, validated.value());
+            List<String> msgList = validatorSet.stream().map(objectConstraintViolation -> objectConstraintViolation.getPropertyPath() + objectConstraintViolation.getMessage()).collect(Collectors.toList());
                     //如果参数校验未通过，抛出BussException
                     if (!CollectionUtils.isEmpty(msgList)) {
                         throw new BussException(ResultCode.VAILD_FAIL, msgList.get(0));
