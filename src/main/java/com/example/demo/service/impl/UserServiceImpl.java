@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.common.util.PojoUtil;
 import com.example.demo.enums.ResultCode;
 import com.example.demo.exception.BussException;
 import com.example.demo.mapper.UserMapper;
@@ -37,7 +38,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User queryUserById(int id) {
-        return userMapper.queryUserById(id);
+        User user = userMapper.queryUserById(id);
+        if (!PojoUtil.checkObjFieldIsNotNull(user)) {
+            throw new BussException(ResultCode.NOT_EXIST);
+        }
+        return user;
     }
 
     @Override

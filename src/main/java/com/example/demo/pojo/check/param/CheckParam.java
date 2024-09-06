@@ -20,4 +20,11 @@ public interface CheckParam {
      */
     void checkChangeUser(User user);
 
+    /**
+     * 根据id查找user
+     *
+     * @param user
+     */
+    void checkQueryUserById(User user);
+
 }

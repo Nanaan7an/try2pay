@@ -3,6 +3,7 @@ package com.example.demo.pojo.check.param.impl;
 import com.example.demo.pojo.User;
 import com.example.demo.pojo.check.group.AddUser;
 import com.example.demo.pojo.check.group.ChangeUser;
+import com.example.demo.pojo.check.group.QueryUserById;
 import com.example.demo.pojo.check.param.CheckParam;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -25,6 +26,12 @@ public class CheckParamImpl implements CheckParam {
     @Validated(ChangeUser.class)
     @Override
     public void checkChangeUser(@Valid User user) {
+
+    }
+
+    @Validated(QueryUserById.class)
+    @Override
+    public void checkQueryUserById(@Valid User user) {
 
     }
 }

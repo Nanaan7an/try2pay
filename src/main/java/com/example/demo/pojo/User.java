@@ -2,7 +2,9 @@ package com.example.demo.pojo;
 
 import com.example.demo.pojo.check.group.AddUser;
 import com.example.demo.pojo.check.group.ChangeUser;
+import com.example.demo.pojo.check.group.QueryUserById;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.*;
 
@@ -11,12 +13,12 @@ import javax.validation.constraints.*;
  * 由于命名非application.*，故该配置文件不会被自动装配
  */
 @Data
-//@Validated
+@Validated
 public class User {
 
     //    id为自增，不需要传值
     @Null(message = "请勿传入userId", groups = {AddUser.class})
-    @NotNull(message = "请务必传入userId",groups = {ChangeUser.class})
+    @NotNull(message = "请务必传入userId", groups = {ChangeUser.class, QueryUserById.class})
     private Integer userId;
 
     /**
