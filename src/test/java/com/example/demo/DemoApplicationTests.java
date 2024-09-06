@@ -37,4 +37,13 @@ class DemoApplicationTests {
 
     }
 
+    @Test
+    void test() {
+        String s = "0.1.2.3...4..";
+        String[] strings = s.split("\\.",5);
+        for (int i = 0; i < strings.length; i++) {
+            System.out.println("No."+i+"="+strings[i].trim());
+        }
+    }
+
 }
