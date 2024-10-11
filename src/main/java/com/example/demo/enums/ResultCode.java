@@ -15,6 +15,8 @@ public enum ResultCode {
 
     VAILD_FAIL("03","",""),
 
+    CHANGE_FAIL("04", "", ""),
+
     THIRD("98", "第三方异常",""),
 
     UNKONW("99", "未知异常",""),
