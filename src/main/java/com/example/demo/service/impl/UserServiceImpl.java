@@ -51,8 +51,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int changeUser(User user) {
-        return userMapper.changeUser(user);
+    public User changeUser(User user) {
+        if (user.getAge() == null && user.getEmail() == null) {
+            throw new BussException(ResultCode.CHANGE_FAIL, "不修改年龄或者邮箱吗");
+        }
+        if (userMapper.changeUser(user) != 1) {
+            throw new BussException(ResultCode.CHANGE_FAIL);
+        }
+        return user;
     }
 
     @Override

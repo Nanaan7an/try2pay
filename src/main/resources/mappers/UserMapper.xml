@@ -46,7 +46,12 @@
     <update id="changeUser" parameterType="com.example.demo.pojo.User">
         update user_info
         <set>
-            age=#{age}
+            <if test="age != '' and age != null">
+                age=#{age}
+            </if>
+            <if test="email != '' and email != null">
+                email=#{email}
+            </if>
         </set>
         <where>
             id=#{userId}

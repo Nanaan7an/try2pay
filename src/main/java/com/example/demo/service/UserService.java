@@ -38,7 +38,7 @@ public interface UserService {
      * @param user 修改的user记录
      * @return 操作影响的行数
      */
-    int changeUser(User user);
+    User changeUser(User user);
 
     /**
      * 删除user记录

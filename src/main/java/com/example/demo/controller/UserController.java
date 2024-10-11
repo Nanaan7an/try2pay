@@ -88,9 +88,22 @@ public class UserController {
      * @param user 修改的user记录
      * @return 操作影响的行数
      */
-    public int changeUser(User user) {
-        checkParam.checkChangeUser(user);
-        return userService.changeUser(user);
+    @LogAnnotation(value = "changeUser")
+    @PostMapping("/changeUser")
+    public Response<User> changeUser(@RequestBody User user) {
+        Response response = new Response<User>();
+        try {
+            checkParam.checkChangeUser(user);
+            response = ResponseUtil.success(userService.changeUser(user));
+        } catch (BussException e) {
+            log.error("根据修改用户信息异常", e);
+            response = ResponseUtil.error(e.getCode(), e.getMsg(), "");
+        } catch (Exception e) {
+            log.error("根据修改用户信息错误", e);
+            response = ResponseUtil.error(ResultCode.UNKONW);
+        } finally {
+            return response;
+        }
     }
 
     /**
