@@ -11,6 +11,7 @@ import javax.validation.constraints.*;
 /**
  * 注解@PropertySource加载指定的配置文件，用于实体类和配置文件绑定。
  * 由于命名非application.*，故该配置文件不会被自动装配
+ * 若添加分组，则需要每个校验规则都添加分组，否则无法生效
  */
 @Data
 @Validated
@@ -24,7 +25,7 @@ public class User {
     /**
      * 用户年龄
      */
-    @Min(value = 18, message = "R18")
+    @Min(value = 18, message = "R18", groups = {ChangeUser.class})
     private Integer age;
 
     /**
