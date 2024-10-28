@@ -1,5 +1,8 @@
 package com.example.demo.thread;
 
+import com.example.demo.frame.thread.ExtdThread;
+import com.example.demo.frame.thread.ImplCallable;
+import com.example.demo.frame.thread.ImplRunnable;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
