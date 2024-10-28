@@ -1,4 +1,4 @@
-package com.example.demo.thread;
+package com.example.demo.frame.thread;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.*;
 
 import static com.example.demo.common.util.DateUtil.getDateTime2;
-import static com.example.demo.thread.Mission.mission;
 
 /**
  * @Author Nanaan
@@ -20,7 +19,7 @@ public class ImplCallable implements Callable {
     @Override
     public Boolean call() throws Exception {
         log.info("【{}】->BeginTms【{}】", Thread.currentThread().getName(), getDateTime2());
-        mission();
+        Mission.mission();
         log.info("【{}】->EndTms【{}】", Thread.currentThread().getName(), getDateTime2());
         return true;
     }

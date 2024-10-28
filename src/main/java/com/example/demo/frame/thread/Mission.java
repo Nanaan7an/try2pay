@@ -1,4 +1,4 @@
-package com.example.demo.thread;
+package com.example.demo.frame.thread;
 
 import lombok.extern.slf4j.Slf4j;
 

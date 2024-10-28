@@ -1,10 +1,10 @@
-package com.example.demo.thread;
+package com.example.demo.frame.thread;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import static com.example.demo.common.util.DateUtil.getDateTime2;
-import static com.example.demo.thread.Mission.mission;
+import static com.example.demo.frame.thread.Mission.mission;
 
 /**
  * @Author Nanaan
