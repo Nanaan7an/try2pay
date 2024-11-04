@@ -28,11 +28,10 @@ public class ImplRunnable implements Runnable {
         } catch (InterruptedException e) {
 //            Call to 'printStackTrace()' should probably be replaced with more robust logging ，使用printStackTrace()可能会导致死锁，更改为log4j框架打印日志
 //            e.printStackTrace();
-            log.error("线程出现异常了，异常信息：", e);
+            log.error("【{}】出现异常了，异常信息：", Thread.currentThread().getName(), e);
         } finally {
-            log.info("【{}】平安无事", Thread.currentThread().getName());
+            log.info("【{}】:EXIT->EndTms【{}】", Thread.currentThread().getName(), getDateTime2());
         }
-        log.info("【{}】->EndTms【{}】", Thread.currentThread().getName(), getDateTime2());
     }
 
     /**
