@@ -28,4 +28,24 @@ public class PojoUtil {
         }
         return true;
     }
+
+    /**
+     * 校验对象所有属性均为空
+     *
+     * @param obj
+     * @return true-均为空
+     */
+    public static boolean checkObjFieldIsNull(Object obj) {
+        try {
+            for (Field f : obj.getClass().getDeclaredFields()) {
+                f.setAccessible(true);
+                if (f.get(obj) != null || f.get(obj) != "") {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }
