@@ -48,4 +48,9 @@ public interface UserService {
      */
     int delUser(User user);
 
+    /**
+     * 查询用户总数
+     * @return 数量
+     */
+    int countUser();
 }

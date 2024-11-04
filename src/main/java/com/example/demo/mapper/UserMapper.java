@@ -53,4 +53,10 @@ public interface UserMapper {
      */
     int delUser(User user);
 
+    /**
+     * 查询当前用户数
+     * @return 用户总数
+     */
+    int countUser();
+
 }

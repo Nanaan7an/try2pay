@@ -65,4 +65,9 @@ public class UserServiceImpl implements UserService {
     public int delUser(User user) {
         return userMapper.delUser(user);
     }
+
+    @Override
+    public int countUser() {
+        return userMapper.countUser();
+    }
 }
