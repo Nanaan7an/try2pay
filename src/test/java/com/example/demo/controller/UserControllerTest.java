@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 @SpringBootTest
 @Slf4j
 class UserControllerTest {
@@ -32,8 +30,10 @@ class UserControllerTest {
 
     @Test
     void queryUserById() {
-        int id = 1;
-        System.out.println(userController.queryUserById(id));
+        int id = 11;
+        System.out.println(userController.queryUserById(new User() {{
+            setUserId(id);
+        }}));
     }
 
     @Test
