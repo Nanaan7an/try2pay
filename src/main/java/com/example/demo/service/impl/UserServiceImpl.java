@@ -39,7 +39,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User queryUserById(int id) {
         User user = userMapper.queryUserById(id);
-        if (!PojoUtil.checkObjFieldIsNotNull(user)) {
+        /*
+        如果查询结果的各属性均为null，则抛出异常；否则返回查询结果。
+         */
+        if (user == null || PojoUtil.checkObjFieldIsNull(user)) {
             throw new BussException(ResultCode.NOT_EXIST);
         }
         return user;
