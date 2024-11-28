@@ -30,16 +30,17 @@ public class PojoUtil {
     }
 
     /**
-     * 校验对象所有属性均为空
+     * 校验对象所有属性均为空null
      *
      * @param obj
-     * @return true-均为空
+     * @return true-均为空；false-存在某个属性不为空
      */
     public static boolean checkObjFieldIsNull(Object obj) {
         try {
             for (Field f : obj.getClass().getDeclaredFields()) {
+                //使私有属性可访问
                 f.setAccessible(true);
-                if (f.get(obj) != null || f.get(obj) != "") {
+                if (f.get(obj) != null) {
                     return false;
                 }
             }
