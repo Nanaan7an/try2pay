@@ -20,4 +20,6 @@
 <!--        <property name="age" value="1"/>-->
 <!--        <property name="alive" value="true"/>-->
     </bean>
+
+    <bean class="com.example.demo.frame.ioc.basexml.Service4Xml" id="service4Xml"/>
 </beans>

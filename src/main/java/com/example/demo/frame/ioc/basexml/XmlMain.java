@@ -21,9 +21,16 @@ public class XmlMain {
         /*
         容器创建对象
          */
-        //根据配置文件名构造Spring容器
+        //1.根据配置文件名(资源路径)读取XML文件
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:ioc/applicationContext.xml");
-        //根据bean的id获取Bean
+
+        //2.获取Bean
         System.out.println(applicationContext.getBean("pojo4Xml"));
+        //2.1根据bean的id、要获取的bean的class获取bean
+        System.out.println(applicationContext.getBean("pojo4Xml", Pojo4Xml.class).getPojoName());
+        //2.2根据bean的id获取bean后，通过强制类型转换得到实际所需的bean类型
+        Service4Xml service4Xml = (Service4Xml) applicationContext.getBean("service4Xml");
+        //3.获取到正确类型的bean对象后，可以正常操作对象的属性和方法
+        service4Xml.methodInBead();
     }
 }

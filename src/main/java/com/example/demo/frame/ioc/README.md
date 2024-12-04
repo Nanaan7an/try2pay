@@ -2,19 +2,21 @@
 
 ### 实现方式
 ##### 准备工作：引入相关依赖
-`
+```
 <dependency>
-<groupId>org.springframework</groupId>
-<artifactId>spring-context</artifactId>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
 </dependency>
-`
+```
 ##### 基于XML
 
-1.创建对象Pojo4Xml
+1.创建对象`Pojo4Xml`
 
 2.创建配置文件`.xml`，将POJO对象配置在`.xml`中，按需配置默认属性值等。
 
-3.此时可以构造容器，并根据`id`创建对象。
+3.获取Spring容器的`ApplicationContext`对象后，根据`id`创建Bean实例对象。
+
+4.通过*强制类型转换*或者`getBean()`*指定Bean类型*得到实际类型的Bean，此时就可以随意使用这个对象中的属性或者方法啦！
 
 *tips*
 
