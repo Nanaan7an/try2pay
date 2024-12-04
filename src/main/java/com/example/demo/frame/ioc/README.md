@@ -37,3 +37,16 @@
 - 配置类等同于XML，即使用一个class代替XML。
 - 使用`@Configuration`标识配置类，使用`@Bean`标识Bean。
 - 不能使用`@Bean`的方法中的对象名创建去Bean。
+
+##### 基于注解-扫包+注解
+
+1.创建对象`Pojo4Annotation`，添加注解`@Component`
+
+2.获取Spring容器的`ApplicationContext`对象后，根据类型创建Bean实例对象。
+
+3.使用Bean的属性和方法同上。
+
+*tips*
+
+- 扫包+注解需同时使用。
+- 使用`@Value`或者赋值，设定初始值。
