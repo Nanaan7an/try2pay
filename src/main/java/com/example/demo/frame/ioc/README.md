@@ -20,4 +20,20 @@
 
 *tips*
 
-`.xml`应当写在`resource`下；当`.xml`处于`resource`的根目录下，构造容器时可以直接写文件名；若`.xml`处于`resource`的子目录下时，则需要使用`classpath:路径/文件名.xml`获取文件，其中`classpath:`表明该文件已处于`resource`，故路径仅需相对路径。
+- `.xml`应当写在`resource`下；当`.xml`处于`resource`的根目录下，构造容器时可以直接写文件名；若`.xml`处于`resource`的子目录下时，则需要使用`classpath:路径/文件名.xml`获取文件，其中`classpath:`表明该文件已处于`resource`，故路径仅需相对路径。
+
+
+##### 基于注解-配置类
+1.创建对象`Pojo4Configuration`
+
+2.创建配置类`Bean4Configuration`，并使用`@Configuration`；创建一个方法，并使用`@Bean`，设置默认值、返回`Pojo4Configuration`。
+
+3.获取Spring容器的`ApplicationContext`对象后，根据方法名或者注解的属性值`value`或`name`创建Bean实例对象。
+
+4.使用Bean的属性和方法同上。
+
+*tips*
+
+- 配置类等同于XML，即使用一个class代替XML。
+- 使用`@Configuration`标识配置类，使用`@Bean`标识Bean。
+- 不能使用`@Bean`的方法中的对象名创建去Bean。
