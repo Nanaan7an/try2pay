@@ -1017,8 +1017,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="try2pay">
-      <IntrospectionTimestamp>2024-01-08.23:44:12</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-01-08.07:44:12</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-05-02.04:01:31</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-05-01.12:01:31</LocalIntrospectionTimestamp>
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="mysql.infoschema">
@@ -1039,65 +1039,249 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <user id="296" parent="1" name="root">
       <Host>localhost</Host>
     </user>
-    <table id="297" parent="292" name="order_info">
+    <table id="297" parent="292" name="batch_info">
+      <Comment>批次信息表</Comment>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </table>
+    <table id="298" parent="292" name="merchant_info">
+      <Comment>商户信息表</Comment>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </table>
+    <table id="299" parent="292" name="order_info">
       <Comment>订单信息</Comment>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <table id="298" parent="292" name="user_info">
+    <table id="300" parent="292" name="pay_info">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <column id="299" parent="297" name="id">
-      <Comment>订单编号</Comment>
-      <DasType>char(20)|0s</DasType>
+    <table id="301" parent="292" name="refund_info">
+      <Comment>退款流水信息</Comment>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </table>
+    <table id="302" parent="292" name="user_info">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </table>
+    <column id="303" parent="297" name="mer_id">
+      <Comment>商户号</Comment>
+      <DasType>varchar(40)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="300" parent="297" name="create_time">
-      <Comment>订单创建时间</Comment>
+    <column id="304" parent="297" name="batch_date">
+      <Comment>批次日期</Comment>
+      <DasType>date|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="305" parent="297" name="batch_sts">
+      <Comment>批次状态</Comment>
+      <DasType>varchar(1)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="306" parent="297" name="batch_step">
+      <Comment>批次步骤</Comment>
+      <DasType>varchar(1)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="307" parent="297" name="cre_tms">
+      <Comment>创建时间戳</Comment>
       <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="308" parent="297" name="last_modf_tms">
+      <Comment>最后更新时间戳</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+      <Position>6</Position>
+    </column>
+    <column id="309" parent="298" name="mer_id">
+      <Comment>商户编号</Comment>
+      <DasType>varchar(40)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="310" parent="298" name="mer_nme">
+      <Comment>商户名称</Comment>
+      <DasType>varchar(100)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="311" parent="299" name="ordr_id">
+      <Comment>订单编号</Comment>
+      <DasType>varchar(30)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="312" parent="299" name="mer_id">
+      <Comment>商户编号</Comment>
+      <DasType>varchar(40)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="301" parent="297" name="user_id">
+    <column id="313" parent="299" name="user_id">
       <Comment>所属用户id</Comment>
       <DasType>char(10)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="302" parent="298" name="id">
-      <AutoIncrement>4</AutoIncrement>
+    <column id="314" parent="299" name="amt">
+      <Comment>订单金额</Comment>
+      <DasType>varchar(10)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="315" parent="299" name="create_time">
+      <Comment>订单创建时间</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>(now())</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="316" parent="299" name="last_modf_tms">
+      <Comment>最后更新时间戳</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+      <Position>6</Position>
+    </column>
+    <index id="317" parent="299" name="PRIMARY">
+      <ColNames>ordr_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="318" parent="299" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="319" parent="300" name="pay_id">
+      <DasType>varchar(30)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="320" parent="300" name="ordr_id">
+      <Comment>订单编号</Comment>
+      <DasType>varchar(30)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="321" parent="300" name="amt">
+      <Comment>支付金额</Comment>
+      <DasType>varchar(10)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="322" parent="300" name="pay_sts">
+      <Comment>支付流水状态</Comment>
+      <DasType>char(1)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="323" parent="300" name="mer_id">
+      <Comment>商户号</Comment>
+      <DasType>varchar(40)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="324" parent="300" name="cre_tms">
+      <Comment>chuang&apos;jian</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="325" parent="300" name="last_modf_tms">
+      <Comment>最后更新时间戳</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+      <Position>7</Position>
+    </column>
+    <index id="326" parent="300" name="PRIMARY">
+      <ColNames>pay_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="327" parent="300" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="328" parent="301" name="refund_id">
+      <Comment>退款流水号</Comment>
+      <DasType>varchar(30)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="329" parent="301" name="orig_pay_id">
+      <Comment>原支付流水号</Comment>
+      <DasType>varchar(30)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="330" parent="301" name="cre_tms">
+      <Comment>创建时间戳</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="331" parent="301" name="las_modf_tms">
+      <Comment>最后更新时间戳</Comment>
+      <DasType>timestamp|0s</DasType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+      <Position>4</Position>
+    </column>
+    <index id="332" parent="301" name="PRIMARY">
+      <ColNames>refund_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="333" parent="301" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="334" parent="302" name="id">
+      <AutoIncrement>7</AutoIncrement>
       <Comment>用户id</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="303" parent="298" name="user_name">
+    <column id="335" parent="302" name="user_name">
       <Comment>用户姓名</Comment>
       <DasType>char(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="304" parent="298" name="age">
+    <column id="336" parent="302" name="age">
       <Comment>用户年龄</Comment>
       <DasType>tinyint|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="305" parent="298" name="email">
+    <column id="337" parent="302" name="email">
       <DasType>varchar(100)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="306" parent="298" name="uuid">
+    <column id="338" parent="302" name="uuid">
       <DasType>char(36)|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="307" parent="298" name="PRIMARY">
+    <index id="339" parent="302" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="308" parent="298" name="PRIMARY">
+    <key id="340" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
