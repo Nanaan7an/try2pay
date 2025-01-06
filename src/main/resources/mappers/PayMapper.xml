@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PayMapper">
+    <resultMap id="payMap" type="Pay">
+        <result property="payId" column="pay_id"/>
+        <result property="ordrId" column="ordr_id"/>
+        <result property="paySts" column="pay_sts"/>
+        <result property="paySts" column="merId"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.example.demo.pojo.Pay">
+        insert into pay_info (pay_id, ordr_id, pay_sts, mer_id)
+        values (#{payId}, #{ordrId}, #{paySts},#{merId})
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.pojo.Pay">
+        update pay_info
+        <set>
+            pay_sts = #{paySts}
+        </set>
+        <where>
+            pay_id = #{payId}
+        </where>
+
+    </update>
+
+    <select id="query" parameterType="com.example.demo.pojo.Pay"
+            resultMap="payMap">
+        select *
+        from pay_info
+        where pay_id = #{payId}
+    </select>
+
+    <select id="queryList" parameterType="com.example.demo.pojo.Pay"
+            resultType="java.util.List">
+        select *
+        from pay_info
+        where
+        <if test="payId ！= null and payId != ''">
+            mer_id = #{merId}
+        </if>
+    </select>
+</mapper>

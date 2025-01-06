@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace表示映射的接口-->
+<mapper namespace="com.example.demo.mapper.BatchMapper">
+
+    <sql id="batch">
+        batch_date as batchDate,
+        batch_sts as batchSts,
+        batch_step as batchStep,
+        mer_id as merId
+    </sql>
+
+    <insert id="addBatch" parameterType="com.example.demo.pojo.BatchInfo">
+        insert into batch_info(batch_date,
+                               batch_sts,
+                               batch_step,
+                               mer_id)
+        values (#{batchDate},
+                #{batchSts},
+                #{batchStep},
+                #{merId})
+    </insert>
+
+    <delete id="delBatch">
+
+    </delete>
+
+    <update id="changeBatch" parameterType="com.example.demo.pojo.BatchInfo">
+        update batch_info
+        <set>
+            <if test="batchSts != null">
+                batch_sts = #{batchSts},
+            </if>
+            <if test="batchStep != null">
+                batch_step = #{batchStep}
+            </if>
+        </set>
+        <where>
+            <if test="batchDate != null">
+                and batch_date = #{batchDate}
+            </if>
+            <if test="merId != null">
+                and mer_id = #{merId}
+            </if>
+        </where>
+    </update>
+
+    <select id="queryBatchList" parameterType="com.example.demo.pojo.BatchInfo"
+            resultType="com.example.demo.pojo.BatchInfo">
+        select
+        <include refid="batch"/>
+        from batch_info
+        <where>
+            <if test="batchDate != null">
+                and batch_date = #{batchDate}
+            </if>
+            <if test="merId != null">
+                and mer_id = #{merId}
+            </if>
+        </where>
+    </select>
+
+</mapper>

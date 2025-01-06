@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--把对象的创建交给spring来管理
+    bean标签：用于配置让spring创建对象，并且存入ioc容器之中
+    id属性：      对象的唯一标识
+    class属性：  指定要创建对象的全限定类名
+
+    若不使用<property/>，则在创建对象时，各个未声明的属性的值为对应Java类型的默认值。
+    若使用，则有以下tips。
+    name:POJO类中的属性名。
+    value:默认属性值，必填。
+    无论POJO中的Java类型是否为String，都应使用“”包围其默认值；在创建对象时，将创建对应Java类型的属性。
+    -->
+    <bean class="com.example.demo.frame.ioc.basexml.Pojo4Xml" id="pojo4Xml">
+<!--        <property name="pojoName" value="默认名字"/>-->
+<!--        <property name="tel" value=""/>-->
+<!--        <property name="age" value="1"/>-->
+<!--        <property name="alive" value="true"/>-->
+    </bean>
+
+    <bean class="com.example.demo.frame.ioc.basexml.Service4Xml" id="service4Xml"/>
+</beans>
