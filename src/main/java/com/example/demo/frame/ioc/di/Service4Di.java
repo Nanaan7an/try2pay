@@ -17,7 +17,8 @@ import org.springframework.stereotype.Component;
 public class Service4Di {
     /*
     在不使用DI的情况下，若在Service4Di中使用Pojo4Annotation，需要在构造函数中new出对象；
-    但是某个外部方法调到用Service4Di中涉及到Pojo4Annotation的方法时，
+    但是某个外部方法调到用Service4Di中涉及到Pojo4Annotation的方法时，可以直接使用。
+    使用IoC、DI之后，只需要声明被依赖对象，无需创建对象。
     @Autowired类似于通过类byType获取依赖类。
      */
     @Autowired
