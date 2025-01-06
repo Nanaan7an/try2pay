@@ -1,6 +1,6 @@
 package com.example.demo.frame.thread;
 
-import com.example.demo.service.UserService;
+import com.example.demo.service.impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +15,7 @@ import static com.example.demo.common.util.DateUtil.getDateTime2;
  * @Description 场景：需要给List中的每个元素创建一个线程，执行相应的任务
  */
 @Slf4j
+@Component
 public class ImplRunnable4List implements Runnable {
     private Thread t;
     private String threadName;
@@ -33,7 +34,7 @@ public class ImplRunnable4List implements Runnable {
     Mission4List mission4List;
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userServiceImpl;
 
     /**
      * 该方法执行一个线程的相关方法
@@ -60,6 +61,24 @@ public class ImplRunnable4List implements Runnable {
         if (t == null) {
             t = new Thread(this, threadName);
             t.start();
+        }
+    }
+
+    /**
+     * 执行多线程。
+     * 在适宜的实际调用此方法，创建线程并运行线程。
+     */
+    public void exeThread() {
+        /*
+        这个len有问题，id不是连续的话，会出现：
+        1.某个id不存在；
+        2.最大id>len。
+         */
+        int len = userServiceImpl.countUser();
+        log.info("当前共有{}个用户", len);
+        for (int i = 0; i < len; i++) {
+            ImplRunnable4List implRunnable4List = new ImplRunnable4List("Thread" + i);
+            implRunnable4List.start();
         }
     }
 }
