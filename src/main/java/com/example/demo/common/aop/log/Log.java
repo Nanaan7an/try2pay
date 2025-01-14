@@ -1,4 +1,4 @@
-package com.example.demo.common.log;
+package com.example.demo.common.aop.log;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface LogAnnotation {
+public @interface Log {
     /**
      * 注解的属性，格式如下：
      * 属性类型 属性名称();
