@@ -14,6 +14,13 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    指定数据源，可配置相关的Druid特有配置；这些配置默认不注入，需要开发者手动绑定，见DruidConfig
 #    type: Druid
+
+#Redis
+  redis:
+    host: 121.40.172.13
+    port: 6379
+    password: Admin@123
+    database: 0
 server:
   port: 8080
 
