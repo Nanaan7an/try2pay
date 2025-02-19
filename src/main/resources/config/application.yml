@@ -21,6 +21,12 @@ spring:
     port: 6379
     password: Admin@123
     database: 0
+#读取redisson配置类
+redisson:
+  singleServerConfig:
+    address: "redis://localhost:6379" # Redis服务器地址和端口
+    password: Admin@123 # 如果Redis设置了密码，请在这里填写
+    database: 0 # Redis数据库索引（默认为0）
 server:
   port: 8080
 
